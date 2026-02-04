@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #353b48;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -12,15 +12,88 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
+.theme {
+  background-color: var(--background);
+  color: var(--foreground);
+  min-height: 100vh;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.theme.light {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+.theme.dark {
+  --background: #353b48;
+  --foreground: #ededed;
+}
+
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+
+}
+
+a {
+  text-decoration: none;
+  color: inherit
+}
+
+/* Theme-aware text colors */
+.theme.light .text-theme-primary {
+  color: #171717;
+}
+
+.theme.dark .text-theme-primary {
+  color: #ffffff;
+}
+
+.theme.light .text-theme-secondary {
+  color: #4b5563;
+}
+
+.theme.dark .text-theme-secondary {
+  color: #d1d5db;
+}
+
+.theme.light .text-theme-muted {
+  color: #6b7280;
+}
+
+.theme.dark .text-theme-muted {
+  color: #9ca3af;
+}
+
+/* Theme-aware background for sections */
+.theme.light .bg-theme-section {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.theme.dark .bg-theme-section {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.animate-float {
+  animation: float 4s ease-in-out infinite;
 }
