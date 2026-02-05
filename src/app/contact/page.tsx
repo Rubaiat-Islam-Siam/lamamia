@@ -15,7 +15,7 @@ const Contact = () => {
           Let's Keep in Touch
         </h1>
 
-        <p className="text-center text-gray-300 mt-4 max-w-xl mx-auto">
+        <p className="text-center text-theme-secondary mt-4 max-w-xl mx-auto">
           Have a project in mind or just want to say hello?  
           Fill out the form and we’ll get back to you.
         </p>

@@ -1,4 +1,4 @@
-import React from 'react'
+import CategoryContent from './CategoryContent'
 
 interface CategoryProps {
   params: Promise<{
@@ -9,11 +9,8 @@ interface CategoryProps {
 const Category = async ({params}: CategoryProps) => {
   const { category } = await params;
   
-  return (
-    <div>
-        <h1 className="text-4xl font-bold capitalize">{category}</h1>
-    </div>
-  )
+  return <CategoryContent category={category} />
 }
 
 export default Category
+

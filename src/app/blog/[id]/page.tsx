@@ -36,11 +36,11 @@ const BlogPost = async ({ params }: Props) => {
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-gray-100 bg-theme-primary">
+        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-theme-primary">
           {post.heading}
         </h1>
 
-        <div className="text-xl text-gray-300 leading-relaxed whitespace-pre-line">
+        <div className="text-xl leading-relaxed whitespace-pre-line text-theme-secondary">
           {post.content || post.description}
         </div>
       </div>

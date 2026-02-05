@@ -23,13 +23,13 @@ const Navbar = () => {
           </Link>
 
           {/* Links */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-6 ">
             <DarkMode/>
             {links.map(link => (
               <Link
                 key={link.id}
                 href={link.url}
-                className="px-2 py-1 rounded-xl text-theme-muted font-medium hover:bg-black/20 hover:text-theme-primary transition-all duration-300 ease-in-out"
+                className="px-2 py-1 rounded-xl text-theme-muted font-semibold hover:bg-black/20 hover:text-theme-primary transition-all duration-300 ease-in-out"
               >
                 {link.title}
               </Link>
