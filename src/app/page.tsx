@@ -42,8 +42,8 @@ export default function Home() {
                 px-6 py-3 rounded-lg 
                 border border-gray-300 dark:border-gray-600
                 text-theme-muted font-semibold
-                hover:bg-gray-500 transition
-                hover:text-theme-primary cursor-pointer
+                hover:bg-gray-900 transition
+                hover:text-theme-secondary cursor-pointer
               "
               >
                 Contact us

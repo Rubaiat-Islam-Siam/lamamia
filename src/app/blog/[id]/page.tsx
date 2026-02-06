@@ -1,16 +1,66 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { data } from '../page'
 import { notFound } from 'next/navigation'
+import { Metadata } from 'next'
+
+interface Post {
+  _id: string;
+  slug: string;
+  image_url: string;
+  heading: string;
+  description: string;
+  content: string;
+}
+
+async function getPost(slug: string) {
+  const res = await fetch(`http://localhost:3000/api/posts`, {
+    cache: 'no-store'
+  });
+
+  if (!res.ok) {
+    throw new Error('Failed to fetch data');
+  }
+
+  const posts: Post[] = await res.json();
+  return posts.find(post => post.slug === slug);
+}
 
 type Props = {
   params: Promise<{ id: string }>
 }
 
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { id } = await params
+  const post = await getPost(id)
+
+  if (!post) {
+    return {
+      title: 'Post Not Found',
+    }
+  }
+
+  return {
+    title: post.heading,
+    description: post.description,
+    openGraph: {
+      title: post.heading,
+      description: post.description,
+      images: [post.image_url],
+      type: 'article',
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.heading,
+      description: post.description,
+      images: [post.image_url],
+    },
+  }
+}
+
 const BlogPost = async ({ params }: Props) => {
   const { id } = await params
-  const post = data.find(item => item.slug === id)
+  const post = await getPost(id)
 
   if (!post) {
     return notFound()
@@ -36,7 +86,7 @@ const BlogPost = async ({ params }: Props) => {
           />
         </div>
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-6 text-theme-primary">
+        <h1 className="text-4xl md:text-5xl font-bold text-blue-500 mb-6 ">
           {post.heading}
         </h1>
 

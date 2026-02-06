@@ -1,5 +1,8 @@
+"use client"
+
 import Link from 'next/link'
 import React from 'react'
+import { useSession, signOut } from 'next-auth/react'
 import DarkMode from '../darkMode/DarkMode'
 
 const links = [
@@ -12,6 +15,8 @@ const links = [
 ]
 
 const Navbar = () => {
+  const { data: session, status } = useSession()
+
   return (
     <nav className="shadow-sm rounded-2xl">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -34,7 +39,29 @@ const Navbar = () => {
                 {link.title}
               </Link>
             ))}
+            <div>
+              {status === "loading" ? (
+                <button className="px-4 py-2 rounded-lg bg-gray-200 dark:bg-gray-700 text-gray-400 cursor-wait">
+                  Loading...
+                </button>
+              ) : session ? (
+                <button 
+                  onClick={() => signOut({ callbackUrl: '/' })}
+                  className="px-4 py-2 rounded-lg bg-red-600 text-white font-semibold hover:bg-red-700 transition-colors"
+                >
+                  Logout
+                </button>
+              ) : (
+                <Link 
+                  href="/login"
+                  className="px-4 py-2 rounded-lg bg-blue-600 text-white font-semibold hover:bg-blue-700 transition-colors inline-block"
+                >
+                  Login
+                </Link>
+              )}
+            </div>
           </div>
+          
         </div>
 
       </div>
