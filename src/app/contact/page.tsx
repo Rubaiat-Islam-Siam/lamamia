@@ -18,7 +18,7 @@ const Contact = () => {
           bg-gradient-to-b from-emerald-700 to-emerald-400
           text-transparent bg-clip-text
         ">
-          Let's Keep in Touch
+          Let Keep in Touch
         </h1>
 
         <p className="text-center text-theme-secondary mt-4 max-w-xl mx-auto">
@@ -66,7 +66,7 @@ const Contact = () => {
 
               <textarea 
                 placeholder="Message"
-                rows="4"
+                rows={4}
                 className="
                   w-full px-4 py-3 
                   border-b border-gray-300 rounded-lg
